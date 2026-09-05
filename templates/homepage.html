@@ -1,0 +1,1016 @@
+{% extends "base.html" %}
+
+{% block title %}BORISTENE — Unbreakable Ukraine{% endblock %}
+
+{% block meta_description %}BORISTENE connects Ukraine and Italy through culture, art, history, education and public projects, including the flagship Unbreakable Ukraine experience.{% endblock %}
+
+{% block extra_css %}
+.hero {
+    min-height: calc(100vh - 76px);
+    display: grid;
+    align-items: center;
+    padding: 66px 0 72px;
+    overflow: hidden;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 560px;
+    height: 280px;
+    border: 1px solid rgba(255,106,0,.22);
+    border-left-color: transparent;
+    border-radius: 50%;
+    top: 72px;
+    left: 25%;
+    transform: rotate(8deg);
+    opacity: .7;
+    pointer-events: none;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: .98fr 1.08fr;
+    gap: 92px;
+    align-items: center;
+}
+
+.hero-copy {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title {
+    margin: 16px 0 8px;
+    font-size: clamp(64px, 7.8vw, 114px);
+    line-height: .87;
+    letter-spacing: -.075em;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.hero-title .middle {
+    color: var(--orange);
+}
+
+.hero-description {
+    max-width: 540px;
+    margin: 24px 0 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(20px, 2vw, 28px);
+    line-height: 1.48;
+    font-style: italic;
+    color: #f3efe9;
+}
+
+.hero-rule {
+    width: min(520px, 100%);
+    height: 1px;
+    background: var(--line);
+    margin: 30px 0 24px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.flagship-card {
+    overflow: hidden;
+    border: 7px solid #fff;
+    border-radius: 0;
+    background: #fff;
+    color: var(--ink);
+    box-shadow: 0 40px 95px rgba(0,0,0,.42);
+    transform: translateY(12px);
+}
+
+.flagship-media {
+    min-height: 320px;
+    padding: 16px;
+}
+
+.flagship-content {
+    padding: 28px 26px 24px;
+    background: #fff;
+}
+
+.flagship-content h2 {
+    margin: 0;
+    color: #e65a00;
+    font-size: 20px;
+}
+
+.flagship-content p {
+    margin: 18px 0 20px;
+    color: #766f69;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 15px;
+    line-height: 1.65;
+}
+
+.flagship-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+
+.text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.text-link:hover {
+    color: var(--orange);
+}
+
+.statement-grid {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 40px;
+    margin-top: 58px;
+}
+
+.statement-card {
+    min-height: 420px;
+    padding: 38px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.statement-number {
+    color: var(--orange);
+    font-size: 12px;
+    letter-spacing: .16em;
+    font-weight: 900;
+}
+
+.statement-card h3 {
+    margin: 0;
+    font-size: clamp(42px, 5vw, 78px);
+    line-height: .94;
+    letter-spacing: -.06em;
+    text-transform: uppercase;
+}
+
+.statement-card p {
+    max-width: 470px;
+    margin: 16px 0 0;
+    color: #a9a29a;
+}
+
+.side-quote {
+    min-height: 420px;
+    padding: 38px;
+    background: var(--orange);
+    color: #100b07;
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.side-quote .quote {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(26px, 3.4vw, 44px);
+    line-height: 1.13;
+    font-style: italic;
+}
+
+.side-quote small {
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 22px;
+    margin-top: 54px;
+}
+
+.project-card {
+    grid-column: span 4;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: #0f0e0d;
+    transition: .28s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-7px);
+    border-color: rgba(255,106,0,.45);
+}
+
+.project-card.wide {
+    grid-column: span 8;
+}
+
+.project-card .media {
+    min-height: 250px;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card.wide .media {
+    min-height: 370px;
+}
+
+.media-art-1 {
+    background:
+        radial-gradient(circle at 24% 22%, rgba(255,106,0,.65), transparent 26%),
+        linear-gradient(145deg, #4b210a, #111 56%, #1c1c1c);
+}
+
+.media-art-2 {
+    background:
+        linear-gradient(135deg, rgba(255,106,0,.18), transparent 50%),
+        repeating-linear-gradient(45deg, #171310 0 28px, #20150d 29px 30px);
+}
+
+.media-art-3 {
+    background:
+        radial-gradient(circle at 70% 35%, rgba(255,106,0,.32), transparent 25%),
+        linear-gradient(160deg, #0e0e0e, #2a180d 60%, #101010);
+}
+
+.media::before,
+.media::after {
+    content: "";
+    position: absolute;
+    border: 1px solid rgba(255,255,255,.13);
+    border-radius: 50%;
+}
+
+.media::before {
+    width: 290px;
+    height: 290px;
+    right: -70px;
+    top: -90px;
+}
+
+.media::after {
+    width: 150px;
+    height: 150px;
+    right: 35px;
+    top: 35px;
+}
+
+.project-body {
+    padding: 24px;
+}
+
+.project-kicker {
+    color: var(--orange);
+    font-size: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: .16em;
+}
+
+.project-body h3 {
+    margin: 10px 0 0;
+    font-size: 25px;
+    letter-spacing: -.035em;
+}
+
+.project-body p {
+    margin: 14px 0 0;
+    color: #9e9790;
+    font-size: 14px;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    gap: 80px;
+    align-items: start;
+    margin-top: 54px;
+}
+
+.about-visual {
+    min-height: 610px;
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background:
+        linear-gradient(160deg, rgba(255,106,0,.23), transparent 45%),
+        linear-gradient(135deg, #21150e, #0f0f0f 64%);
+    border: 1px solid var(--line);
+}
+
+.about-visual::before {
+    content: "BORISTENE";
+    position: absolute;
+    left: -8px;
+    bottom: 8px;
+    font-size: clamp(62px, 8vw, 120px);
+    font-weight: 900;
+    letter-spacing: -.08em;
+    color: rgba(255,255,255,.05);
+    transform: rotate(-90deg);
+    transform-origin: left bottom;
+}
+
+.about-visual::after {
+    content: "";
+    position: absolute;
+    width: 360px;
+    height: 520px;
+    border: 1px solid rgba(255,106,0,.4);
+    border-radius: 50%;
+    right: -70px;
+    top: 52px;
+    transform: rotate(18deg);
+}
+
+.about-copy p {
+    margin: 0 0 22px;
+    color: #b2aba3;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 20px;
+    line-height: 1.68;
+}
+
+.about-facts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 34px;
+}
+
+.fact {
+    padding: 22px;
+    border-top: 1px solid var(--line-strong);
+}
+
+.fact strong {
+    display: block;
+    color: var(--orange);
+    font-size: 34px;
+    letter-spacing: -.05em;
+}
+
+.fact span {
+    color: #918b84;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+}
+
+.join-panel {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 44px;
+    padding: 50px;
+    background:
+        radial-gradient(circle at 85% 20%, rgba(255,106,0,.26), transparent 32%),
+        linear-gradient(135deg, #17120e, #0c0c0c 72%);
+    border: 1px solid rgba(255,106,0,.22);
+    border-radius: var(--radius);
+}
+
+.join-panel h3 {
+    margin: 0;
+    font-size: clamp(42px, 6vw, 82px);
+    line-height: .92;
+    letter-spacing: -.06em;
+    text-transform: uppercase;
+}
+
+.join-panel p {
+    margin: 20px 0 0;
+    max-width: 560px;
+    color: #aaa39b;
+}
+
+.join-options {
+    display: grid;
+    gap: 10px;
+}
+
+.join-option {
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: rgba(255,255,255,.02);
+}
+
+.join-option strong {
+    display: block;
+    color: #fff;
+}
+
+.join-option span {
+    display: block;
+    margin-top: 5px;
+    color: #88817a;
+    font-size: 13px;
+}
+
+.newsletter-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: var(--radius);
+    overflow: hidden;
+    min-height: 520px;
+}
+
+.newsletter-visual {
+    position: relative;
+    background:
+        linear-gradient(145deg, rgba(0,0,0,.12), rgba(0,0,0,.62)),
+        radial-gradient(circle at 28% 26%, #ff7a14 0 2%, transparent 2.5%),
+        radial-gradient(circle at 45% 46%, #ff7a14 0 1.5%, transparent 2%),
+        radial-gradient(circle at 62% 34%, #ff7a14 0 2%, transparent 2.5%),
+        linear-gradient(145deg, #512305, #15110e 52%, #0c0c0c);
+}
+
+.newsletter-visual::after {
+    content: "LETTER 01";
+    position: absolute;
+    right: 28px;
+    bottom: 24px;
+    color: rgba(255,255,255,.12);
+    font-size: 54px;
+    font-weight: 900;
+    letter-spacing: -.06em;
+}
+
+.newsletter-copy {
+    padding: 48px;
+    background: var(--paper);
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.newsletter-copy .eyebrow {
+    color: var(--orange-dark);
+}
+
+.newsletter-copy h3 {
+    margin: 18px 0 0;
+    font-size: clamp(40px, 5vw, 68px);
+    line-height: .95;
+    letter-spacing: -.06em;
+    text-transform: uppercase;
+}
+
+.newsletter-copy p {
+    color: #6d655e;
+    max-width: 470px;
+}
+
+.subscribe {
+    display: flex;
+    margin-top: 18px;
+    border-bottom: 1px solid rgba(17,16,15,.25);
+}
+
+.subscribe input {
+    flex: 1;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    padding: 16px 4px;
+    color: var(--ink);
+}
+
+.subscribe button {
+    border: 0;
+    background: transparent;
+    color: var(--orange-dark);
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: .85fr 1.15fr;
+    gap: 56px;
+    margin-top: 52px;
+}
+
+.contact-card {
+    padding: 34px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: rgba(255,255,255,.018);
+}
+
+.contact-card + .contact-card {
+    margin-top: 14px;
+}
+
+.contact-card small {
+    color: var(--orange);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    font-weight: 900;
+}
+
+.contact-card h4 {
+    margin: 10px 0 0;
+    font-size: 26px;
+}
+
+.contact-form {
+    display: grid;
+    gap: 16px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    border: 1px solid var(--line);
+    background: #0d0d0d;
+    color: #fff;
+    border-radius: 12px;
+    padding: 16px 18px;
+    outline: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--orange);
+}
+
+.contact-form textarea {
+    min-height: 170px;
+    resize: vertical;
+}
+
+.faq-list {
+    margin-top: 50px;
+    border-top: 1px solid var(--line);
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--line);
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 24px 0;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    text-align: left;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    color: #99928b;
+    transition: max-height .3s ease, padding .3s ease;
+}
+
+.faq-item.open .faq-answer {
+    max-height: 220px;
+    padding-bottom: 24px;
+}
+
+.faq-plus {
+    color: var(--orange);
+    font-size: 26px;
+    font-weight: 400;
+}
+
+@media (max-width: 1000px) {
+    .hero-grid,
+    .statement-grid,
+    .about-grid,
+    .join-panel,
+    .newsletter-wrap,
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        min-height: auto;
+    }
+
+    .hero-grid {
+        gap: 48px;
+    }
+
+    .hero-title {
+        font-size: clamp(62px, 15vw, 104px);
+    }
+
+    .project-card,
+    .project-card.wide {
+        grid-column: span 6;
+    }
+
+    .about-visual {
+        min-height: 460px;
+    }
+}
+
+@media (max-width: 680px) {
+    .flagship-media {
+        min-height: 230px;
+    }
+
+    .project-card,
+    .project-card.wide {
+        grid-column: 1 / -1;
+    }
+
+    .project-card.wide .media {
+        min-height: 260px;
+    }
+
+    .join-panel,
+    .newsletter-copy {
+        padding: 28px;
+    }
+
+    .about-facts {
+        grid-template-columns: 1fr;
+    }
+}
+{% endblock %}
+
+{% block content %}
+<section class="hero" id="unbreakable">
+    <div class="container">
+        <div class="hero-grid">
+            <div class="hero-copy reveal">
+                <div class="eyebrow">Culture · Art · History · Business & Education</div>
+
+                <h1 class="hero-title">
+                    BORI<span class="middle">STE</span>NE
+                </h1>
+
+                <p class="hero-description">
+                    associazione culturale ucraina — a Milan-based bridge between Ukraine and Italy,
+                    telling the real story of Ukrainian culture, history and heritage.
+                </p>
+
+                <div class="hero-rule"></div>
+
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="#join">Support us <span class="arrow">→</span></a>
+                    <a class="btn btn-outline" href="#about">About us <span class="arrow">→</span></a>
+                </div>
+            </div>
+
+            <article class="flagship-card reveal">
+                <div class="flagship-media project-media">
+                    <span class="tag">Flagship project</span>
+                </div>
+
+                <div class="flagship-content">
+                    <h2>Unbreakable Ukraine</h2>
+                    <p>
+                        High-resolution 3D scans, cinematic animation, and original sound design come together
+                        in an immersive experience about Ukraine's architectural and artistic heritage under threat.
+                    </p>
+
+                    <div class="flagship-meta">
+                        <span class="micro-pill">Rome · Premiere 2025</span>
+                        <span class="micro-pill">Ars Electronica · Linz 2026</span>
+                    </div>
+
+                    <a class="text-link" href="#projects">Learn more <span class="arrow">→</span></a>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="section" aria-labelledby="manifesto-title">
+    <div class="container">
+        <div class="eyebrow reveal">Why we exist</div>
+        <h2 class="section-heading reveal" id="manifesto-title">
+            Not a postcard.<br>
+            Not a stereotype.<br>
+            <span class="accent">A living culture.</span>
+        </h2>
+
+        <div class="statement-grid">
+            <article class="statement-card dark-card reveal">
+                <span class="statement-number">01 / Manifesto</span>
+
+                <div>
+                    <h3>We make Ukraine visible on its own terms.</h3>
+                    <p>
+                        We work with artists, historians, researchers, cultural institutions and communities
+                        to present Ukraine through depth, evidence and creative form.
+                    </p>
+                </div>
+            </article>
+
+            <aside class="side-quote reveal">
+                <div class="quote">
+                    “Culture becomes unbreakable when memory is carried forward, shared, translated and seen.”
+                </div>
+                <small>Boristene cultural association</small>
+            </aside>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="projects">
+    <div class="container">
+        <div class="eyebrow reveal">Our projects</div>
+        <h2 class="section-heading reveal">
+            Stories that move<br>
+            <span class="accent">through space and time.</span>
+        </h2>
+        <p class="section-copy reveal">
+            Exhibitions, digital reconstructions, public talks, educational formats and cross-border collaborations —
+            all designed with one visual language and one cultural mission.
+        </p>
+
+        <div class="project-grid">
+            <article class="project-card wide reveal">
+                <div class="media media-art-1"></div>
+                <div class="project-body">
+                    <div class="project-kicker">Immersive heritage</div>
+                    <h3>Unbreakable Ukraine</h3>
+                    <p>
+                        A cinematic 3D experience preserving monuments, churches, interiors and artworks through
+                        high-fidelity digital documentation and contemporary storytelling.
+                    </p>
+                </div>
+            </article>
+
+            <article class="project-card reveal">
+                <div class="media media-art-2"></div>
+                <div class="project-body">
+                    <div class="project-kicker">Public program</div>
+                    <h3>Ukraine, explained</h3>
+                    <p>
+                        Conversations and lectures that give European audiences clear historical and cultural context.
+                    </p>
+                </div>
+            </article>
+
+            <article class="project-card reveal">
+                <div class="media media-art-3"></div>
+                <div class="project-body">
+                    <div class="project-kicker">Education</div>
+                    <h3>Young voices</h3>
+                    <p>
+                        Workshops connecting young Ukrainians in Europe with language, heritage and contemporary culture.
+                    </p>
+                </div>
+            </article>
+
+            <article class="project-card wide reveal">
+                <div class="media media-art-2"></div>
+                <div class="project-body">
+                    <div class="project-kicker">Italy × Ukraine</div>
+                    <h3>Cultural bridges</h3>
+                    <p>
+                        Partnerships with institutions, festivals, universities and creative communities in Italy and across Europe.
+                    </p>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="about">
+    <div class="container">
+        <div class="eyebrow reveal">About us</div>
+        <h2 class="section-heading reveal">
+            A Milan-based bridge<br>
+            <span class="accent">between Ukraine and Italy.</span>
+        </h2>
+
+        <div class="about-grid">
+            <div class="about-visual reveal"></div>
+
+            <div class="about-copy reveal">
+                <p>
+                    BORISTENE is an independent Ukrainian cultural association based in Milan.
+                    We create projects that make Ukrainian culture legible, contemporary and accessible
+                    to audiences beyond Ukraine.
+                </p>
+
+                <p>
+                    Our work sits between culture, art, history, technology, education and public diplomacy.
+                    We believe heritage should not be archived into silence; it should be transformed into experiences,
+                    conversations and new relationships.
+                </p>
+
+                <p>
+                    That is why our projects combine rigorous research with strong visual storytelling,
+                    spatial design, digital tools and international collaboration.
+                </p>
+
+                <div class="about-facts">
+                    <div class="fact">
+                        <strong>2</strong>
+                        <span>countries, one cultural bridge</span>
+                    </div>
+                    <div class="fact">
+                        <strong>360°</strong>
+                        <span>culture, history, art, education</span>
+                    </div>
+                    <div class="fact">
+                        <strong>EU</strong>
+                        <span>partnership-minded programs</span>
+                    </div>
+                    <div class="fact">
+                        <strong>UA</strong>
+                        <span>Ukraine at the center</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="join">
+    <div class="container">
+        <div class="join-panel reveal">
+            <div>
+                <div class="eyebrow">Join us</div>
+                <h3>Help us keep Ukrainian culture visible.</h3>
+                <p>
+                    Support a project, become a partner, contribute expertise or help us open the next cultural space.
+                    Every collaboration expands what can be preserved, translated and shared.
+                </p>
+
+                <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:28px;">
+                    <a class="btn btn-primary" href="#contact">Become a partner <span class="arrow">→</span></a>
+                    <a class="btn btn-outline" href="#contact">Support a project <span class="arrow">→</span></a>
+                </div>
+            </div>
+
+            <div class="join-options">
+                <div class="join-option">
+                    <strong>Partners</strong>
+                    <span>Institutions, museums, festivals, universities, foundations.</span>
+                </div>
+                <div class="join-option">
+                    <strong>Contributors</strong>
+                    <span>Artists, researchers, designers, technologists and cultural operators.</span>
+                </div>
+                <div class="join-option">
+                    <strong>Supporters</strong>
+                    <span>People and communities who want Ukrainian stories to travel further.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="newsletter">
+    <div class="container">
+        <div class="newsletter-wrap reveal">
+            <div class="newsletter-visual"></div>
+
+            <div class="newsletter-copy">
+                <div class="eyebrow">Newsletter</div>
+                <h3>One letter from Ukraine to Europe.</h3>
+                <p>
+                    New projects, exhibition announcements, cultural context, voices worth knowing and the work behind the scenes.
+                </p>
+
+                <form class="subscribe" action="#" method="post">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <button type="submit">Subscribe →</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="contact">
+    <div class="container">
+        <div class="eyebrow reveal">Contact us</div>
+        <h2 class="section-heading reveal">
+            Have a space,<br>
+            an idea or a <span class="accent">reason to collaborate?</span>
+        </h2>
+
+        <div class="contact-grid">
+            <div>
+                <div class="contact-card reveal">
+                    <small>General</small>
+                    <h4>hello@boristene.org</h4>
+                </div>
+
+                <div class="contact-card reveal">
+                    <small>Partnerships</small>
+                    <h4>partners@boristene.org</h4>
+                </div>
+
+                <div class="contact-card reveal">
+                    <small>Based in</small>
+                    <h4>Milan, Italy</h4>
+                </div>
+            </div>
+
+            <form class="contact-form reveal" action="#" method="post">
+                <input type="text" name="name" placeholder="Your name" required>
+                <input type="email" name="email" placeholder="Email address" required>
+                <input type="text" name="subject" placeholder="Subject">
+                <textarea name="message" placeholder="Tell us about your idea, project or partnership"></textarea>
+                <button class="btn btn-primary" type="submit">Send message <span class="arrow">→</span></button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="faqs">
+    <div class="container">
+        <div class="eyebrow reveal">FAQs</div>
+        <h2 class="section-heading reveal">
+            A few useful<br>
+            <span class="accent">answers.</span>
+        </h2>
+
+        <div class="faq-list reveal">
+            <div class="faq-item">
+                <button class="faq-question" type="button">
+                    <span>What is BORISTENE?</span>
+                    <span class="faq-plus">+</span>
+                </button>
+                <div class="faq-answer">
+                    BORISTENE is a Milan-based Ukrainian cultural association working across culture, art, history,
+                    education and international collaboration.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" type="button">
+                    <span>Can institutions collaborate with you?</span>
+                    <span class="faq-plus">+</span>
+                </button>
+                <div class="faq-answer">
+                    Yes. We are open to exhibition partnerships, public programs, university collaborations,
+                    cultural events, research initiatives and technology-enabled heritage projects.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" type="button">
+                    <span>Can I support a specific project?</span>
+                    <span class="faq-plus">+</span>
+                </button>
+                <div class="faq-answer">
+                    Yes. Support can be tied to a specific project, production stage, event, educational program or general cultural activity.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" type="button">
+                    <span>Where do your events take place?</span>
+                    <span class="faq-plus">+</span>
+                </button>
+                <div class="faq-answer">
+                    We are based in Milan and work internationally. Projects can appear in Italy, Ukraine and other European cultural venues.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const item = button.closest('.faq-item');
+            const wasOpen = item.classList.contains('open');
+
+            document.querySelectorAll('.faq-item').forEach(el => {
+                el.classList.remove('open');
+                const plus = el.querySelector('.faq-plus');
+                if (plus) plus.textContent = '+';
+            });
+
+            if (!wasOpen) {
+                item.classList.add('open');
+                const plus = item.querySelector('.faq-plus');
+                if (plus) plus.textContent = '−';
+            }
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}BORISTENE — Ukrainian culture in Europe{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}BORISTENE is a Milan-based cultural bridge between Ukraine and Italy, presenting Ukrainian culture, history, heritage, education and creative projects.{% endblock %}">
+    {% block canonical %}{% endblock %}
+
+    <style>
+        :root {
+            --bg: #080808;
+            --bg-soft: #0e0d0c;
+            --panel: #12110f;
+            --panel-2: #17130f;
+            --paper: #f6f1e8;
+            --paper-2: #eee7dc;
+            --text: #f6f3ed;
+            --muted: #aaa39a;
+            --line: rgba(255,255,255,.12);
+            --line-strong: rgba(255,255,255,.22);
+            --orange: #ff6a00;
+            --orange-2: #ff7b14;
+            --orange-dark: #c94c00;
+            --brown: #3a1e0d;
+            --brown-2: #1e140e;
+            --ink: #11100f;
+            --max: 1180px;
+            --radius: 26px;
+            --radius-sm: 14px;
+            --shadow: 0 22px 70px rgba(0,0,0,.35);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 88px;
+        }
+
+        body {
+            margin: 0;
+            background:
+                radial-gradient(circle at 80% 4%, rgba(255,106,0,.09), transparent 25%),
+                linear-gradient(180deg, #090909 0%, #080808 55%, #0a0908 100%);
+            color: var(--text);
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: .04;
+            background-image:
+                linear-gradient(rgba(255,255,255,.7) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.7) 1px, transparent 1px);
+            background-size: 72px 72px;
+            mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 80%, transparent);
+            z-index: 0;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        textarea {
+            font: inherit;
+        }
+
+        .site-shell {
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            width: min(var(--max), calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            background: linear-gradient(180deg, rgba(8,8,8,.94), rgba(8,8,8,.78));
+            border-bottom: 1px solid rgba(255,255,255,.06);
+        }
+
+        .navbar {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            gap: 34px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            flex: 0 0 auto;
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: -.04em;
+        }
+
+        .brand-mark {
+            position: relative;
+            width: 18px;
+            height: 18px;
+        }
+
+        .brand-mark::before,
+        .brand-mark::after {
+            content: "";
+            position: absolute;
+            background: var(--orange);
+            border-radius: 999px;
+            transform: rotate(-25deg);
+        }
+
+        .brand-mark::before {
+            width: 13px;
+            height: 3px;
+            top: 9px;
+            left: 1px;
+        }
+
+        .brand-mark::after {
+            width: 8px;
+            height: 3px;
+            top: 3px;
+            right: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            margin-left: auto;
+        }
+
+        .nav-link {
+            position: relative;
+            color: #b8b3ad;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transition: color .2s ease;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 100%;
+            bottom: -8px;
+            height: 2px;
+            background: var(--orange);
+            transition: right .25s ease;
+        }
+
+        .nav-link:hover {
+            color: #fff;
+        }
+
+        .nav-link:hover::after {
+            right: 0;
+        }
+
+        .nav-tools {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .language-pill {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px;
+            border: 1px solid var(--line-strong);
+            border-radius: 999px;
+            background: rgba(255,255,255,.025);
+        }
+
+        .language-pill a {
+            min-width: 35px;
+            height: 26px;
+            display: grid;
+            place-items: center;
+            border-radius: 999px;
+            color: #857e76;
+            font-size: 10px;
+            font-weight: 900;
+        }
+
+        .language-pill a.active {
+            background: var(--orange);
+            color: #0a0807;
+        }
+
+        .socials {
+            display: flex;
+            gap: 8px;
+        }
+
+        .social-link {
+            width: 30px;
+            height: 30px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--line);
+            border-radius: 50%;
+            color: #9f9891;
+            font-size: 10px;
+            transition: .2s ease;
+        }
+
+        .social-link:hover {
+            border-color: var(--orange);
+            color: var(--orange);
+            transform: translateY(-2px);
+        }
+
+        .menu-toggle {
+            display: none;
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--line);
+            background: transparent;
+            color: #fff;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .section {
+            position: relative;
+            padding: 110px 0;
+            border-top: 1px solid rgba(255,255,255,.06);
+        }
+
+        .section:first-of-type {
+            border-top: 0;
+        }
+
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--orange);
+            text-transform: uppercase;
+            letter-spacing: .18em;
+            font-size: 11px;
+            font-weight: 900;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 22px;
+            height: 1px;
+            background: currentColor;
+        }
+
+        .section-heading {
+            margin: 16px 0 0;
+            max-width: 880px;
+            font-size: clamp(42px, 6.2vw, 86px);
+            line-height: .93;
+            letter-spacing: -.065em;
+            text-transform: uppercase;
+        }
+
+        .section-heading .accent {
+            color: var(--orange);
+        }
+
+        .section-copy {
+            max-width: 690px;
+            margin-top: 26px;
+            color: #b7b0a8;
+            font-size: 18px;
+        }
+
+        .btn {
+            min-height: 50px;
+            padding: 0 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            border: 1px solid var(--line-strong);
+            border-radius: 2px;
+            text-transform: uppercase;
+            letter-spacing: .02em;
+            font-size: 12px;
+            font-weight: 900;
+            transition: .25s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--orange);
+            color: #0a0807;
+            border-color: var(--orange);
+        }
+
+        .btn-primary:hover {
+            background: var(--orange-2);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 36px rgba(255,106,0,.18);
+        }
+
+        .btn-outline:hover {
+            border-color: #fff;
+            background: rgba(255,255,255,.04);
+            transform: translateY(-2px);
+        }
+
+        .arrow {
+            font-size: 17px;
+            line-height: 1;
+        }
+
+        .dark-card {
+            border: 1px solid var(--line);
+            background:
+                linear-gradient(145deg, rgba(255,106,0,.08), transparent 35%),
+                rgba(255,255,255,.02);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .paper-card {
+            background: var(--paper);
+            color: var(--ink);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .project-media {
+            position: relative;
+            overflow: hidden;
+            background:
+                linear-gradient(120deg, rgba(255,106,0,.45), rgba(60,31,15,.75) 42%, rgba(29,29,29,.98)),
+                repeating-linear-gradient(116deg, transparent 0 34px, rgba(255,255,255,.07) 35px 36px);
+        }
+
+        .project-media::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(255,122,20,.35), transparent 24%),
+                linear-gradient(to top, rgba(0,0,0,.14), transparent 55%);
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 28px;
+            padding: 0 12px;
+            border-radius: 999px;
+            background: var(--orange);
+            color: #110b07;
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: .02em;
+        }
+
+        .micro-pill {
+            display: inline-flex;
+            align-items: center;
+            min-height: 28px;
+            padding: 0 10px;
+            border: 1px solid rgba(17,16,15,.12);
+            border-radius: 999px;
+            color: #6f6861;
+            font-size: 11px;
+            font-weight: 700;
+            background: rgba(255,255,255,.42);
+        }
+
+        .site-footer {
+            border-top: 1px solid var(--line);
+            padding: 60px 0 28px;
+            background: #070707;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.3fr .7fr .7fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .footer-title {
+            margin: 10px 0 0;
+            font-size: clamp(36px, 5vw, 68px);
+            line-height: .95;
+            letter-spacing: -.06em;
+            text-transform: uppercase;
+        }
+
+        .footer-col h4 {
+            margin: 0 0 18px;
+            color: #fff;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: .14em;
+        }
+
+        .footer-col a,
+        .footer-col p {
+            display: block;
+            margin: 10px 0;
+            color: #918a82;
+            font-size: 13px;
+        }
+
+        .footer-col a:hover {
+            color: var(--orange);
+        }
+
+        .footer-bottom {
+            margin-top: 50px;
+            padding-top: 24px;
+            border-top: 1px solid var(--line);
+            display: flex;
+            justify-content: space-between;
+            gap: 24px;
+            color: #6f6962;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        @media (max-width: 1100px) {
+            .nav-links {
+                gap: 16px;
+            }
+
+            .nav-link {
+                font-size: 10px;
+            }
+
+            .socials {
+                display: none;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .navbar {
+                min-height: 68px;
+            }
+
+            .menu-toggle {
+                display: grid;
+                place-items: center;
+                margin-left: auto;
+            }
+
+            .nav-tools {
+                margin-left: 0;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 68px;
+                left: 0;
+                right: 0;
+                display: none;
+                padding: 20px;
+                background: rgba(8,8,8,.98);
+                border-top: 1px solid var(--line);
+                border-bottom: 1px solid var(--line);
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 18px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-link {
+                font-size: 13px;
+            }
+
+            .language-pill {
+                display: none;
+            }
+
+            .section {
+                padding: 80px 0;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: min(var(--max), calc(100% - 28px));
+            }
+
+            .section {
+                padding: 68px 0;
+            }
+
+            .section-copy {
+                font-size: 16px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+            }
+        }
+
+        {% block extra_css %}{% endblock %}
+    </style>
+
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+<div class="site-shell">
+
+    <header class="site-header">
+        <div class="container">
+            <nav class="navbar" aria-label="Main navigation">
+                <a href="#top" class="brand" aria-label="BORISTENE home">
+                    <span class="brand-mark" aria-hidden="true"></span>
+                    <span>BORISTENE</span>
+                </a>
+
+                <div class="nav-links" id="navLinks">
+                    <a class="nav-link" href="#unbreakable">Unbreakable Ukraine</a>
+                    <a class="nav-link" href="#projects">Our Projects</a>
+                    <a class="nav-link" href="#about">About Us</a>
+                    <a class="nav-link" href="#join">Join Us</a>
+                    <a class="nav-link" href="#newsletter">Newsletter</a>
+                    <a class="nav-link" href="#contact">Contact Us</a>
+                    <a class="nav-link" href="#faqs">FAQs</a>
+                </div>
+
+                <div class="nav-tools">
+                    <div class="language-pill" aria-label="Language switcher">
+                        <a class="active" href="#" aria-current="page">ENG</a>
+                        <a href="#">IT</a>
+                        <a href="#">UA</a>
+                    </div>
+
+                    <div class="socials" aria-label="Social links">
+                        <a class="social-link" href="#" aria-label="Instagram">ig</a>
+                        <a class="social-link" href="#" aria-label="Facebook">f</a>
+                        <a class="social-link" href="#" aria-label="YouTube">yt</a>
+                        <a class="social-link" href="#" aria-label="LinkedIn">in</a>
+                    </div>
+
+                    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu">☰</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main id="top">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div>
+                    <div class="eyebrow">Culture across borders</div>
+                    <h2 class="footer-title">Ukraine.<br><span style="color:var(--orange)">Seen clearly.</span></h2>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Navigate</h4>
+                    <a href="#unbreakable">Unbreakable Ukraine</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#about">About</a>
+                    <a href="#join">Join us</a>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <a href="#newsletter">Newsletter</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#faqs">FAQs</a>
+                    <p>Milan, Italy / Ukraine</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>© 2026 BORISTENE. All rights reserved.</span>
+                <span>Culture · Art · History · Business · Education</span>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+<script>
+    const navLinks = document.getElementById('navLinks');
+    const menuToggle = document.getElementById('menuToggle');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => navLinks.classList.remove('open'));
+        });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+{% block extra_js %}{% endblock %}
+</body>
+</html>

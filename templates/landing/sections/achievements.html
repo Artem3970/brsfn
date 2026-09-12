@@ -1,0 +1,23 @@
+<section class="section section--paper2" id="achievements">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow">Achievements</span>
+      <h2 class="section-title">The impact we create together</h2>
+    </div>
+    <div class="ach-wrap reveal">
+      <div class="ach-grid">
+        {% for achievement in achievements %}
+          <div class="ach-cell">
+            <div class="ach-num">{{ achievement.number }}</div>
+            <div><div class="ach-label">{{ achievement.label }}</div>{% if achievement.note %}<div class="ach-note">{{ achievement.note }}</div>{% endif %}</div>
+          </div>
+        {% empty %}
+          <div class="ach-cell"><div class="ach-num">0+</div><div><div class="ach-label">Projects completed</div><div class="ach-note">Cultural, educational and artistic projects.</div></div></div>
+          <div class="ach-cell"><div class="ach-num">0+</div><div><div class="ach-label">Participants</div><div class="ach-note">People who have joined our programmes and events.</div></div></div>
+          <div class="ach-cell"><div class="ach-num">0+</div><div><div class="ach-label">Volunteers involved</div><div class="ach-note">People giving their time, skills and energy.</div></div></div>
+          <div class="ach-cell"><div class="ach-num">0+</div><div><div class="ach-label">Venues</div><div class="ach-note">Places where Boristene projects have taken place.</div></div></div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}{{ project.title }} | Boristene{% endblock %}
+{% block content %}
+  {% include 'landing/_header.html' %}
+  <main class="listing-page section section--paper">
+    <div class="container project-detail-copy">
+      <nav class="project-breadcrumb"><a href="{% url 'homeview' %}">Home</a><span>/</span><a href="{% url 'projects' %}">Our projects</a><span>/</span><span>{{ project.title }}</span></nav>
+      <span class="eyebrow">{{ project.status }}</span>
+      <h1 class="section-title">{{ project.title }}</h1>
+      {% if project.image %}<img class="dynamic-project-image" src="{{ project.image.url }}" alt="{{ project.title }}" />{% elif project.image_url %}<img class="dynamic-project-image" src="{{ project.image_url }}" alt="{{ project.title }}" />{% endif %}
+      <div class="body-text"><p>{{ project.short_description }}</p>{% if project.description %}{{ project.description|linebreaks }}{% endif %}</div>
+      <div class="project-actions" id="support-this-project"><a class="project-button project-button--dark" href="{% url 'join' %}#partner">Support this project <span>↗</span></a>{% if project.registration_url %}<a class="project-button project-button--orange" href="{{ project.registration_url }}" target="_blank" rel="noopener">Register <span>↗</span></a>{% endif %}</div>
+    </div>
+  </main>
+  {% include 'landing/_footer.html' %}
+{% endblock %}

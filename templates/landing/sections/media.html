@@ -1,0 +1,29 @@
+<section class="section section--paper" id="media">
+  <div class="container">
+    <div class="media-layout reveal">
+      <div class="media-heading">
+      <span class="eyebrow">Media About Us</span>
+      <h2 class="section-title">Boristene in the press</h2>
+      <p class="media-note">Stories, interviews and coverage from the media platforms that share our work.</p>
+      </div>
+      <div class="media-grid">
+        {% for media in media_mentions %}
+          {% if media.article_url %}<a href="{{ media.article_url }}" class="media-tile" target="_blank" rel="noopener" aria-label="Read {{ media.outlet }} coverage">{% else %}<div class="media-tile">{% endif %}
+            <div class="media-logo">
+              {% if media.image %}<img src="{{ media.image.url }}" alt="{{ media.outlet }}" />{% elif media.image_url %}<img src="{{ media.image_url }}" alt="{{ media.outlet }}" />{% else %}<span class="media-wordmark">{{ media.outlet }}</span>{% endif %}
+            </div>
+            <div class="media-tile-meta"><span>{{ media.outlet }}</span>{% if media.published_at %}<small>{{ media.published_at|date:'d M Y' }}</small>{% endif %}</div>
+          {% if media.article_url %}</a>{% else %}</div>{% endif %}
+        {% empty %}
+          <a class="media-tile media-tile--placeholder" href="#contact" aria-label="Add Media outlet 01 link"><div class="media-logo"><span class="media-placeholder-mark">+</span></div><div class="media-tile-meta"><span>Media outlet 01</span><small>Add article link</small></div></a>
+          <a class="media-tile media-tile--placeholder" href="#contact" aria-label="Add Media outlet 02 link"><div class="media-logo"><span class="media-placeholder-mark">+</span></div><div class="media-tile-meta"><span>Media outlet 02</span><small>Add article link</small></div></a>
+          <a class="media-tile media-tile--placeholder" href="#contact" aria-label="Add Media outlet 03 link"><div class="media-logo"><span class="media-placeholder-mark">+</span></div><div class="media-tile-meta"><span>Media outlet 03</span><small>Add article link</small></div></a>
+          <a class="media-tile media-tile--placeholder" href="#contact" aria-label="Add Media outlet 04 link"><div class="media-logo"><span class="media-placeholder-mark">+</span></div><div class="media-tile-meta"><span>Media outlet 04</span><small>Add article link</small></div></a>
+          <a class="media-tile media-tile--placeholder" href="#contact" aria-label="Add Media outlet 05 link"><div class="media-logo"><span class="media-placeholder-mark">+</span></div><div class="media-tile-meta"><span>Media outlet 05</span><small>Add article link</small></div></a>
+          <a class="media-tile media-tile--placeholder" href="#contact" aria-label="Add Media outlet 06 link"><div class="media-logo"><span class="media-placeholder-mark">+</span></div><div class="media-tile-meta"><span>Media outlet 06</span><small>Add article link</small></div></a>
+          <a class="media-tile media-tile--placeholder" href="#contact" aria-label="Add Media outlet 07 link"><div class="media-logo"><span class="media-placeholder-mark">+</span></div><div class="media-tile-meta"><span>Media outlet 07</span><small>Add article link</small></div></a>
+          <a class="media-tile media-tile--placeholder" href="#contact" aria-label="Add Media outlet 08 link"><div class="media-logo"><span class="media-placeholder-mark">+</span></div><div class="media-tile-meta"><span>Media outlet 08</span><small>Add article link</small></div></a>
+        {% endfor %}
+      </div>
+  </div>
+</section>

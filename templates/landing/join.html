@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}Join Us | Boristene{% endblock %}
+{% block content %}
+  {% include 'landing/_header.html' %}
+  <main class="join-page section section--paper">
+    <div class="container">
+      <div class="join-page-heading reveal">
+        <span class="eyebrow">How to join us</span>
+        <h1 class="section-title">Stand with Boristene</h1>
+      </div>
+
+      <section class="join-process reveal" data-tabgroup="join">
+        <div class="join-process-top">
+          <h2>How do we<br />work <span aria-hidden="true">↗</span></h2>
+          <div class="join-process-tabs tabs" role="tablist" aria-label="Ways to join Boristene">
+            <button class="tab-btn active" data-tab="join-partner" type="button" role="tab">With partners</button>
+            <button class="tab-btn" data-tab="join-humanitarian" type="button" role="tab">Humanitarian Division</button>
+            <button class="tab-btn" data-tab="join-military" type="button" role="tab">Military Division</button>
+          </div>
+        </div>
+
+        <div class="tab-panel active" id="panel-join-partner">
+          <div class="join-process-steps">
+            <div><span>1</span><p><b>Share your goals</b> and tell us what kind of cultural impact you want to support.</p></div>
+            <div><span>2</span><p><b>Choose a partnership path</b> matched to your organisation and priorities.</p></div>
+            <div><span>3</span><p><b>Shape the collaboration</b> with a clear scope, timeline and shared outcomes.</p></div>
+            <div><span>4</span><p><b>Activate the project</b> through visibility, access and meaningful participation.</p></div>
+            <div><span>5</span><p><b>See the impact</b> through updates, reporting and the next opportunity to work together.</p></div>
+          </div>
+          <a class="join-process-cta" href="{% url 'homeview' %}#contact">Donate <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <div class="tab-panel" id="panel-join-humanitarian">
+          <div class="join-process-steps">
+            <div><span>1</span><p><b>Bring a request</b> from a community, organisation or partner on the ground.</p></div>
+            <div><span>2</span><p><b>Verify the need</b> and understand the people, place and urgency involved.</p></div>
+            <div><span>3</span><p><b>Prioritise support</b> according to impact, urgency and available resources.</p></div>
+            <div><span>4</span><p><b>Deliver the response</b> with trusted partners and transparent coordination.</p></div>
+            <div><span>5</span><p><b>Report the outcome</b> and keep the community connected to future support.</p></div>
+          </div>
+          <a class="join-process-cta" href="{% url 'homeview' %}#contact">Donate <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <div class="tab-panel" id="panel-join-military">
+          <div class="join-process-steps">
+            <div><span>1</span><p><b>Identify the need</b> with trusted local contacts and organisations.</p></div>
+            <div><span>2</span><p><b>Confirm the request</b> and define the right equipment or contribution.</p></div>
+            <div><span>3</span><p><b>Coordinate the route</b> with responsible logistics partners.</p></div>
+            <div><span>4</span><p><b>Deliver the support</b> where it is needed most.</p></div>
+            <div><span>5</span><p><b>Share verified updates</b> on delivery, use and continued needs.</p></div>
+          </div>
+          <a class="join-process-cta" href="{% url 'homeview' %}#contact">Donate <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+    </div>
+  </main>
+  {% include 'landing/_footer.html' %}
+{% endblock %}

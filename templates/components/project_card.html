@@ -1,0 +1,12 @@
+<article class="proj-card">
+  {% if project.image %}<img class="proj-media proj-media-image" src="{{ project.image.url }}" alt="{{ project.title }}" />{% elif project.image_url %}<img class="proj-media proj-media-image" src="{{ project.image_url }}" alt="{{ project.title }}" />{% else %}<div class="proj-media"><div class="glow"></div></div>{% endif %}
+  <div class="proj-body">
+    {% if project.year or project.location %}<div class="proj-meta">{{ project.year }}{% if project.location %} · {{ project.location }}{% endif %}</div>{% endif %}
+    <div class="proj-title">{{ project.title }}</div>
+    <p class="proj-desc">{{ project.short_description }}</p>
+    <div class="proj-btns">
+      <a href="{% url 'project-detail' project.slug %}#support-this-project" class="btn-sm dark">Support <span aria-hidden="true">↗</span></a>
+      <a href="{% url 'project-detail' project.slug %}" class="btn-sm outline">More details <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</article>

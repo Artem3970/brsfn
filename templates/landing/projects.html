@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Our Projects | Boristene{% endblock %}
+{% block content %}
+  {% include 'landing/_header.html' %}
+  <main class="listing-page section section--paper">
+    <div class="container">
+      <span class="eyebrow">Our Projects</span>
+      <h1 class="section-title">Current work and past record</h1>
+      <div class="project-listing-grid">
+        {% for project in projects %}{% include 'components/project_card.html' with project=project %}{% empty %}
+          <p class="empty-state">Projects will appear here once they are added in Django Admin.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </main>
+  {% include 'landing/_footer.html' %}
+{% endblock %}

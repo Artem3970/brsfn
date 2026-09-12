@@ -1,0 +1,52 @@
+<section class="section section--paper" id="events">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow">Our Projects</span>
+      <h2 class="section-title">Current work, past record, and what's next</h2>
+    </div>
+
+    <div class="events-tabs-row reveal" data-tabgroup="events">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="proj-current" type="button">Current Projects</button>
+        <button class="tab-btn" data-tab="proj-past" type="button">Past Projects</button>
+        <button class="tab-btn" data-tab="proj-calendar" type="button">Events Calendar 2026-2027</button>
+      </div>
+
+      <div class="tab-panel active" id="panel-proj-current">
+        <div class="proj-scroll">
+          {% for project in projects %}
+            {% include 'components/project_card.html' with project=project %}
+          {% empty %}
+            {% include 'components/project_placeholder.html' with placeholder_title='Project one' %}
+            {% include 'components/project_placeholder.html' with placeholder_title='Project two' %}
+            {% include 'components/project_placeholder.html' with placeholder_title='Project three' %}
+            {% include 'components/project_placeholder.html' with placeholder_title='Project four' %}
+            {% include 'components/project_placeholder.html' with placeholder_title='Project five' %}
+            {% include 'components/project_placeholder.html' with placeholder_title='Project six' %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="tab-panel" id="panel-proj-past">
+        <div class="proj-scroll">
+          {% for project in past_projects %}
+            {% include 'components/project_card.html' with project=project %}
+          {% empty %}
+            <p class="empty-state">Past projects will appear here once added in Django Admin.</p>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="tab-panel" id="panel-proj-calendar">
+        <div class="cal-list">
+          <div class="faq-group-title">Upcoming events</div>
+          {% for event in upcoming_events %}{% include 'components/event_row.html' with event=event %}{% empty %}<p class="empty-state">No upcoming events have been added yet.</p>{% endfor %}
+        </div>
+        <div class="cal-list">
+          <div class="faq-group-title">Past events</div>
+          {% for event in past_events %}{% include 'components/event_row.html' with event=event %}{% empty %}<p class="empty-state">No past events have been added yet.</p>{% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

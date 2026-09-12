@@ -1,0 +1,143 @@
+{% load static %}
+<section class="hero" id="hero">
+        <div class="container hero2-grid">
+          <div class="hero2-left reveal">
+            <img
+              class="hero2-mapline"
+              src="{% static 'images/ukraine-map.svg' %}"
+              alt=""
+              aria-hidden="true"
+            />
+
+            <span class="eyebrow"
+              >Culture · Art · History · Business &amp; Education</span
+            >
+            <h1 class="hero2-title">BORI<span>STE</span>NE</h1>
+            <p class="lede hero2-tagline">
+              associazione culturale ucraina — a Milan-based bridge between
+              Ukraine and Italy, telling the real story of Ukrainian culture,
+              history and heritage.
+            </p>
+            <div class="hero2-divider"></div>
+            <div class="hero2-ctas">
+              <a href="#join" class="btn btn--solid"
+                >Support Us
+                <svg viewBox="0 0 14 14">
+                  <path
+                    d="M1 7H13M13 7L8 2M13 7L8 12"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    fill="none"
+                  /></svg
+              ></a>
+              <a href="{% url 'about' %}" class="btn btn--ghost-dark"
+                >About Us
+                <svg viewBox="0 0 14 14">
+                  <path
+                    d="M1 7H13M13 7L8 2M13 7L8 12"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    fill="none"
+                  /></svg
+              ></a>
+            </div>
+          </div>
+
+          <aside class="hero2-card reveal" id="unbreakable">
+            <a
+              href="{% url 'project-unbreakable' %}"
+              class="hero2-card-visual"
+              aria-label="Discover Unbreakable Ukraine"
+            >
+              <span class="hero2-card-tag">Flagship Project</span>
+              <svg
+                viewBox="0 0 500 310"
+                preserveAspectRatio="xMidYMax slice"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <defs>
+                  <radialGradient id="heroCardGlow" cx="50%" cy="30%" r="70%">
+                    <stop
+                      offset="0%"
+                      stop-color="#fd7715"
+                      stop-opacity="0.35"
+                    />
+                    <stop offset="100%" stop-color="#fd7715" stop-opacity="0" />
+                  </radialGradient>
+                </defs>
+                <rect width="500" height="310" fill="url(#heroCardGlow)" />
+                <g
+                  fill="none"
+                  stroke="#ffffff"
+                  stroke-width="1.1"
+                  opacity="0.75"
+                >
+                  <path
+                    d="M150 260 L150 150 L175 90 L200 150 L200 260"
+                    stroke-dasharray="1 5"
+                  />
+                  <path
+                    d="M200 260 L200 130 L230 60 L260 130 L260 260"
+                    stroke-dasharray="1 5"
+                  />
+                  <path
+                    d="M260 260 L260 150 L285 90 L310 150 L310 260"
+                    stroke-dasharray="1 5"
+                  />
+                  <path
+                    d="M310 260 L310 165 L330 115 L350 165 L350 260"
+                    stroke-dasharray="1 5"
+                  />
+                </g>
+                <line
+                  x1="120"
+                  y1="260"
+                  x2="380"
+                  y2="260"
+                  stroke="#fd7715"
+                  stroke-width="1"
+                />
+              </svg>
+              <span class="hero2-card-visual-label"
+                >Unbreakable<br />Ukraine</span
+              >
+            </a>
+            <div class="hero2-card-body">
+              <a href="{% url 'project-unbreakable' %}" class="hero2-card-title">Unbreakable Ukraine</a>
+              <p class="lede hero2-card-lede">
+                An immersive journey through heritage the world is trying to
+                erase.
+              </p>
+              <p class="hero2-card-text">
+                High-resolution 3D scans, cinematic animation, and original
+                sound design come together in an experience about Ukraine's
+                architectural and artistic heritage under threat.
+              </p>
+              <div class="hero2-stats">
+                <div class="hero2-stat">
+                  <span class="k">World Premiere</span
+                  ><span class="v">La Nuvola, Rome — 10–11 Jul 2025</span>
+                </div>
+                <div class="hero2-stat">
+                  <span class="k">Videocittà Award</span
+                  ><span class="v">2026</span>
+                </div>
+                <div class="hero2-stat">
+                  <span class="k">Next Stage</span
+                  ><span class="v">Ars Electronica, Linz — 9–13 Sep 2026</span>
+                </div>
+              </div>
+              <a href="{% url 'project-unbreakable' %}" class="btn btn--solid hero2-card-cta"
+                >More information
+                <svg viewBox="0 0 14 14">
+                  <path
+                    d="M1 7H13M13 7L8 2M13 7L8 12"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    fill="none"
+                  /></svg
+              ></a>
+            </div>
+          </aside>
+        </div>
+      </section>

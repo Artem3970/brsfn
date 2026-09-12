@@ -1,0 +1,3 @@
+<a class="partner-card" href="{{ partner.website_url|default:'#' }}"{% if partner.website_url %} target="_blank" rel="noopener"{% endif %}>
+  {% if partner.logo %}<img src="{{ partner.logo.url }}" alt="{{ partner.name }}" />{% elif partner.logo_url %}<img src="{{ partner.logo_url }}" alt="{{ partner.name }}" />{% else %}<span>{{ partner.name }}</span>{% endif %}
+</a>

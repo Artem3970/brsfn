@@ -1,4 +1,4 @@
-<div class="cal-row">
+<article class="cal-row{% if not event.is_confirmed %} tba{% endif %}">
   <div class="cal-date">{% if event.date_label %}{{ event.date_label }}{% elif event.date %}{{ event.date|date:'d M Y' }}{% else %}Date TBA{% endif %}</div>
   <div>
     <div class="cal-title">{{ event.title }}</div>
@@ -6,4 +6,4 @@
     {% if event.description %}<div class="cal-loc">{{ event.description }}</div>{% endif %}
   </div>
   <span class="cal-tag">{% if event.is_confirmed %}Confirmed{% else %}To be announced{% endif %}</span>
-</div>
+</article>

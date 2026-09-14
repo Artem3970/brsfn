@@ -1,0 +1,11 @@
+{% extends "admin/base.html" %}
+{% load static %}
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" href="{% static 'css/admin.css' %}" />{% endblock %}
+{% block branding %}
+<h1 id="site-name">
+  <a href="{% url 'admin:index' %}" aria-label="Boristene content studio">
+    <img src="{% static 'images/Logo/SVG/Boristene_Logo_White.svg' %}" alt="Boristene" />
+    <span>Content Studio</span>
+  </a>
+</h1>
+{% endblock %}

@@ -109,10 +109,44 @@
     }
   });
 
+  document.querySelectorAll("[data-project-carousel]").forEach(function (carousel) {
+    var track = carousel.querySelector(".proj-scroll");
+    var cards = carousel.querySelectorAll(".proj-card");
+    var dots = carousel.querySelector("[data-project-dots]");
+    var previous = carousel.querySelector("[data-project-prev]");
+    var next = carousel.querySelector("[data-project-next]");
+    if (!track || !cards.length || !dots) return;
+    var step = function () { return cards[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).gap || 0); };
+    var pages = function () { return Math.max(1, Math.ceil((track.scrollWidth - track.clientWidth) / step()) + 1); };
+    var active = function () { return Math.min(pages() - 1, Math.round(track.scrollLeft / step())); };
+    var render = function () {
+      dots.innerHTML = "";
+      for (var index = 0; index < pages(); index += 1) {
+        var dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "project-dot" + (index === active() ? " active" : "");
+        dot.dataset.page = index;
+        dot.setAttribute("aria-label", "Go to project page " + (index + 1));
+        dot.addEventListener("click", function (event) { track.scrollTo({ left: Number(event.currentTarget.dataset.page) * step(), behavior: "smooth" }); });
+        dots.appendChild(dot);
+      }
+    };
+    var move = function (direction) { track.scrollTo({ left: Math.max(0, Math.min(pages() - 1, active() + direction)) * step(), behavior: "smooth" }); };
+    if (previous) previous.addEventListener("click", function () { move(-1); });
+    if (next) next.addEventListener("click", function () { move(1); });
+    track.addEventListener("scroll", function () { dots.querySelectorAll(".project-dot").forEach(function (dot, index) { dot.classList.toggle("active", index === active()); }); }, { passive: true });
+    render();
+    window.addEventListener("resize", render);
+  });
+
   var newsletter = document.getElementById("nlForm");
   var newsletterMessage = document.getElementById("nlMsg");
   if (newsletter && newsletterMessage) newsletter.addEventListener("submit", function (event) {
     event.preventDefault();
+    if (!newsletter.checkValidity()) {
+      newsletter.reportValidity();
+      return;
+    }
     newsletterMessage.classList.add("is-shown");
     newsletter.reset();
   });

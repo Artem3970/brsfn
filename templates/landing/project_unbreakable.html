@@ -19,17 +19,23 @@
         <p class="project-intro">An international immersive journey through Ukraine's architectural and artistic heritage.</p>
       </header>
 
+      <section class="project-highlights" aria-label="Project highlights">
+        <div><span>World premiere</span><strong>Rome · 2025</strong></div>
+        <div><span>Recognition</span><strong>Videocittà Award · 2026</strong></div>
+        <div><span>Next stage</span><strong>Ars Electronica · Linz</strong></div>
+      </section>
+
       <div class="project-cover project-cover--placeholder" role="img" aria-label="Unbreakable Ukraine project image">
         <div class="cover-grid"></div>
         <div class="cover-river"></div>
         <span class="cover-label">UNBREAKABLE<br />UKRAINE</span>
-        <span class="cover-note">Project image coming soon</span>
+        <span class="cover-note">Immersive project · preview</span>
       </div>
 
       <div class="project-actions">
-        <a class="project-button project-button--dark" href="#support">Support this project <span>↗</span></a>
-        <button class="project-button project-button--orange" type="button" data-share-project aria-expanded="false">Share this project <span>↗</span></button>
-        <div class="share-popover" data-share-popover hidden>
+        <a class="project-button project-button--dark" href="{% url 'join' %}#humanitarian">Support this project <span>↗</span></a>
+        <button class="project-button project-button--orange" type="button" data-share-project aria-expanded="false" aria-controls="project-share-menu">Share this project <span>↗</span></button>
+        <div class="share-popover" id="project-share-menu" data-share-popover hidden>
           <div class="share-popover-head"><strong>Share Project</strong><button type="button" data-close-share aria-label="Close share menu">&times;</button></div>
           <div class="share-links">
             <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}" target="_blank" rel="noopener"><span class="share-brand">f</span>Facebook</a>
@@ -94,8 +100,8 @@
           <div class="support-card">
             <h2>Support this<br />project</h2>
             <div class="support-tabs" role="tablist">
-              <button class="support-tab is-active" type="button" data-support-tab="one-time">One-time</button>
-              <button class="support-tab" type="button" data-support-tab="monthly">Monthly</button>
+              <button class="support-tab is-active" type="button" data-support-tab="one-time" aria-selected="true">One-time</button>
+              <button class="support-tab" type="button" data-support-tab="monthly" aria-selected="false">Monthly</button>
             </div>
             <div class="amount-field">
               <input id="donationAmount" type="number" min="1" value="0" aria-label="Donation amount" />
@@ -113,8 +119,8 @@
           <div class="support-card requisites-card">
             <h2>Requisites</h2>
             <div class="support-tabs" role="tablist">
-              <button class="support-tab is-active" type="button" data-requisite-tab="paypal">PayPal</button>
-              <button class="support-tab" type="button" data-requisite-tab="bank">Bank transfer</button>
+              <button class="support-tab is-active" type="button" data-requisite-tab="paypal" aria-selected="true">PayPal</button>
+              <button class="support-tab" type="button" data-requisite-tab="bank" aria-selected="false">Bank transfer</button>
             </div>
             <div class="requisite-panel is-active" data-requisite-panel="paypal">
               <p><a class="requisite-link" href="mailto:associazione@boristenemilano.com">associazione@boristenemilano.com</a></p>
@@ -127,7 +133,7 @@
                 <div><dt>Address / Indirizzo</dt><dd>Via Ugo Tarchetti 1, 20121 Milano, Italia</dd></div>
                 <div><dt>Codice Fiscale</dt><dd>97971770157</dd></div>
                 <div><dt>Beneficiary bank / Banca</dt><dd>To be confirmed</dd></div>
-                <div class="iban-row"><dt>IBAN</dt><dd><span>To be confirmed</span><button type="button" data-copy-iban>Copy</button></dd></div>
+                <div class="iban-row"><dt>IBAN</dt><dd><span>To be confirmed</span><button type="button" disabled title="Available once bank details are confirmed">Copy</button></dd></div>
                 <div><dt>BIC/SWIFT</dt><dd>To be confirmed</dd></div>
                 <div><dt>Payment purpose / Causale</dt><dd>Free donation Boristene ETS Association CF 97971770157</dd></div>
               </dl>

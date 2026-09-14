@@ -5,7 +5,9 @@
     tab.addEventListener("click", function () {
       var card = tab.closest(".support-card");
       card.querySelectorAll("[data-support-tab]").forEach(function (item) { item.classList.remove("is-active"); });
+      card.querySelectorAll("[data-support-tab]").forEach(function (item) { item.setAttribute("aria-selected", "false"); });
       tab.classList.add("is-active");
+      tab.setAttribute("aria-selected", "true");
       var note = card.querySelector("[data-mode-note]");
       if (note) note.textContent = tab.dataset.supportTab === "monthly" ? "Monthly contribution" : "One-time contribution";
     });
@@ -15,8 +17,10 @@
     tab.addEventListener("click", function () {
       var card = tab.closest(".support-card");
       card.querySelectorAll("[data-requisite-tab]").forEach(function (item) { item.classList.remove("is-active"); });
+      card.querySelectorAll("[data-requisite-tab]").forEach(function (item) { item.setAttribute("aria-selected", "false"); });
       card.querySelectorAll("[data-requisite-panel]").forEach(function (panel) { panel.classList.remove("is-active"); });
       tab.classList.add("is-active");
+      tab.setAttribute("aria-selected", "true");
       var panel = card.querySelector('[data-requisite-panel="' + tab.dataset.requisiteTab + '"]');
       if (panel) panel.classList.add("is-active");
     });

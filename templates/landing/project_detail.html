@@ -5,11 +5,24 @@
   <main class="listing-page section section--paper">
     <div class="container project-detail-copy">
       <nav class="project-breadcrumb"><a href="{% url 'homeview' %}">Home</a><span>/</span><a href="{% url 'projects' %}">Our projects</a><span>/</span><span>{{ project.title }}</span></nav>
-      <span class="eyebrow">{{ project.status }}</span>
+      <span class="eyebrow">{{ project.get_status_display }} project</span>
       <h1 class="section-title">{{ project.title }}</h1>
       {% if project.image %}<img class="dynamic-project-image" src="{{ project.image.url }}" alt="{{ project.title }}" />{% elif project.image_url %}<img class="dynamic-project-image" src="{{ project.image_url }}" alt="{{ project.title }}" />{% endif %}
-      <div class="body-text"><p>{{ project.short_description }}</p>{% if project.description %}{{ project.description|linebreaks }}{% endif %}</div>
-      <div class="project-actions" id="support-this-project"><a class="project-button project-button--dark" href="{% url 'join' %}#partner">Support this project <span>↗</span></a>{% if project.registration_url %}<a class="project-button project-button--orange" href="{{ project.registration_url }}" target="_blank" rel="noopener">Register <span>↗</span></a>{% endif %}</div>
+      <p class="project-detail-intro">{{ project.short_description }}</p>
+      {% if project.date_label or project.location or project.goal or project.budget or project.partners or project.participants or project.outcome %}
+        <section class="project-facts" aria-label="Project details">
+          {% if project.date_label %}<div><span>Date</span><strong>{{ project.date_label }}</strong></div>{% endif %}
+          {% if project.location %}<div><span>Location</span><strong>{{ project.location }}</strong></div>{% endif %}
+          {% if project.goal %}<div><span>Goal</span><strong>{{ project.goal }}</strong></div>{% endif %}
+          {% if project.budget %}<div><span>Budget</span><strong>{{ project.budget }}</strong></div>{% endif %}
+          {% if project.partners %}<div><span>Partners / sponsors</span><strong>{{ project.partners }}</strong></div>{% endif %}
+          {% if project.participants %}<div><span>Participants</span><strong>{{ project.participants }}</strong></div>{% endif %}
+          {% if project.outcome %}<div><span>Outcome</span><strong>{{ project.outcome }}</strong></div>{% endif %}
+        </section>
+      {% endif %}
+      {% if project.website_text %}<aside class="project-website-text"><span>Project note</span><p>{{ project.website_text|linebreaksbr }}</p></aside>{% endif %}
+      {% if project.description %}<div class="body-text project-full-description">{{ project.description|linebreaks }}</div>{% endif %}
+      <div class="project-actions" id="support-this-project"><a class="project-button project-button--dark" href="{% url 'join' %}#humanitarian">Support this project <span>↗</span></a>{% if project.registration_url %}<a class="project-button project-button--orange" href="{{ project.registration_url }}" target="_blank" rel="noopener">Register <span>↗</span></a>{% endif %}</div>
     </div>
   </main>
   {% include 'landing/_footer.html' %}
